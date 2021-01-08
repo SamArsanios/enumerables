@@ -47,6 +47,7 @@ module Enumerable
     true
   end
 
+  # my_any Enumberable method
   def my_any?(argue = nil)
     result = false
     if block_given?
@@ -60,6 +61,7 @@ module Enumerable
     result
   end
 
+  # my_none Enumberable method
   def my_none?(argu = nil)
     result = true
     if block_given?
@@ -73,6 +75,7 @@ module Enumerable
     result
   end
 
+  # my_count Enumberable method
   def my_count(para = nil)
     counter = 0
     if block_given?
@@ -85,6 +88,8 @@ module Enumerable
     end
     counter
   end
+
+  
 end
 
 # ...1...
