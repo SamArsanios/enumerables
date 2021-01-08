@@ -50,19 +50,17 @@ module Enumerable
   end
 
   # my_any Enumberable method
-  def my_any?(argue = nil)
-    result = false
-    if block_given?
-      my_each { |val| return true if yield(val) }
-    end
-    if argue
-      my_each { |val| return true if argue === val } # rubocop:disable Style/CaseEquality
+  def my_any?(arg = nil)
+    if arg
+      my_each { |ele| return true if arg === ele } # rubocop:disable Style/CaseEquality
+    elsif block_given?
+      my_each { |ele| return true if yield(ele) }
     else
-      my_each { |val| return true unless val }
+      my_each { |ele| return true if ele }
     end
-    result
-  end
 
+    false
+  end
   # my_none Enumberable method
   def my_none?(argu = nil)
     result = true
@@ -85,7 +83,7 @@ module Enumerable
     elsif para
       my_each { |val| counter += 1 if para == val }
     else
-      counter = length
+      counter = size
     end
     counter
   end
@@ -177,6 +175,7 @@ puts ''
 puts [1, 2, 4, 2].my_count #=> 4
 puts [1, 2, 4, 2].my_count(2) #=> 2
 puts([0, 1, 2, 3].count { |element| element > 1 }) # => 2
+p (1..3).my_count #=> 3
 puts ''
 
 # ..8...
