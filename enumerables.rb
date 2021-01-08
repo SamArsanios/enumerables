@@ -152,6 +152,7 @@ puts [].my_all? #=> true
 puts ''
 
 # ..5...
+puts '4.-------my_any-------'
 puts(%w[ant bear cat].my_any? { |word| word.length >= 3 }) #=> true
 puts(%w[ant bear cat].my_any? { |word| word.length >= 4 }) #=> true
 puts %w[ant bear cat].my_any?(/d/) #=> false
@@ -161,6 +162,7 @@ puts [].my_any? #=> false
 puts ''
 
 # ..6...
+puts '4.-------my_none-------'
 p(%w[ant bear cat].my_none? { |word| word.length == 5 }) #=> true
 p(%w[ant bear cat].my_none? { |word| word.length >= 4 }) #=> false
 p %w[ant bear cat].my_none?(/d/) #=> true
@@ -172,6 +174,7 @@ p [nil, false, true].my_none? #=> false
 puts ''
 
 # ..7...
+puts '4.-------my_count-------'
 puts [1, 2, 4, 2].my_count #=> 4
 puts [1, 2, 4, 2].my_count(2) #=> 2
 puts([0, 1, 2, 3].count { |element| element > 1 }) # => 2
