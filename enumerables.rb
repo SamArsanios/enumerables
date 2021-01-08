@@ -59,6 +59,19 @@ module Enumerable
     end
     result
   end
+
+  def my_none?(argu = nil)
+    result = true
+    if block_given?
+      my_each { |val| return false if yield(val) }
+    end
+    if argu
+      my_each { |val| return false if argu === val } # rubocop:disable Style/CaseEquality
+    else
+      my_each { |val| return false if val == true }
+    end
+    result
+  end
 end
 
 # ...1...
@@ -97,3 +110,11 @@ puts [].my_any? #=> false
 puts ''
 
 # ..6...
+p(%w[ant bear cat].my_none? { |word| word.length == 5 }) #=> true
+p(%w[ant bear cat].my_none? { |word| word.length >= 4 }) #=> false
+p %w[ant bear cat].my_none?(/d/) #=> true
+p [1, 3.14, 42].my_none?(Float) #=> false
+p [].my_none? #=> true
+p [nil].my_none? #=> true
+p [nil, false].my_none? #=> true
+p [nil, false, true].my_none? #=> false
