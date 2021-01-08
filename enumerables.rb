@@ -10,7 +10,7 @@ module Enumerable
       yield(arr[i])
       i += 1
     end
-    arr
+    self
   end
 
   # my_each_with_index Enumberable method
@@ -22,6 +22,8 @@ module Enumerable
       yield(item, index)
       index += 1
     end
+
+    self
   end
 
   # my_select Enumberable method
@@ -135,6 +137,7 @@ puts ''
 puts '2.-------my_each_with_index-------'
 p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts friend if index.even? })
 p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts "#{friend} is index #{index}" })
+p (1..5).my_each_with_index {|item,index| puts "#{item} is #{index}"}
 puts ''
 
 # ..3...
