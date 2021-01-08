@@ -72,6 +72,19 @@ module Enumerable
     end
     result
   end
+
+  def my_count(para = nil)
+    counter = 0
+    if block_given?
+      my_each { |val| counter += 1 if yield(val) }
+    end
+    if para
+      my_each { |val| counter += 1 if para == val }
+    else
+      counter = length
+    end
+    counter
+  end
 end
 
 # ...1...
@@ -118,3 +131,8 @@ p [].my_none? #=> true
 p [nil].my_none? #=> true
 p [nil, false].my_none? #=> true
 p [nil, false, true].my_none? #=> false
+
+# ..7...
+puts [1, 2, 4, 2].my_count #=> 4
+puts [1, 2, 4, 2].my_count(2) #=> 2
+puts([0, 1, 2, 3].count { |element| element > 1 }) # => 2
