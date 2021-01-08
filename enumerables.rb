@@ -182,13 +182,8 @@ puts '8.--------my_maps--------'
 my_books = ['The Lord of the Rings', 'The Chronicles of Narnia', 'The Problem of Pain']
 puts(my_books.my_map { |item| item.gsub('The', 'A') })
 puts((0..5).my_map { |i| i * i })
-my_proc = proc { |num| num > 10 }
-p [18, 22, 5, 6].my_map(my_proc) { |num| num < 10 } # => true true false false
-
-# puts 'my_map_proc'
-# my_proc = proc { |i| i * i }
-# puts (1..5).my_map(my_proc) { |i| i + i }
-
+my_proc = proc { |num| num < 10 }
+p [18, 22, 5, 6].my_map(my_proc) { |num| num > 20 } # => true true false false
 puts ''
 
 puts '9.--------my_inject--------'
