@@ -93,18 +93,38 @@ module Enumerable
   def my_map(proc = nil)
     return enum_for unless block_given?
 
-    array = []
+    array1 = []
 
     if proc
-      my_each { |element| array << proc.call(element) }
+      my_each { |element| array1 << proc.call(element) }
     else
-      my_each { |element| array << yield(element) }
+      my_each { |element| array1 << yield(element) }
     end
 
-    array
+    array1
   end
+
+  # rubocop:disable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
+  def my_inject(arg = nil, sym = nil)
+    if (arg && sym.nil?) && (arg.is_a?(Symbol) || arg.is_a?(String))
+      sym = arg
+      arg = nil
+    end
+
+    if !block_given? && sym
+      to_a.my_each { |item| arg = arg ? arg.send(sym, item) : item }
+    else
+      to_a.my_each { |item| arg = arg ? yield(arg, item) : item }
+    end
+
+    arg
+  end
+  # rubocop:enable Metrics/CyclomaticComplexity, Metrics/PerceivedComplexity
 end
 
+def multiply_els(arr)
+  arr.inject(:*)
+end
 # ...1...
 puts '1.-------my_each-------'
 p(1..5).my_each { |num| puts "the number is #{num}" }
@@ -162,7 +182,23 @@ puts '8.--------my_maps--------'
 my_books = ['The Lord of the Rings', 'The Chronicles of Narnia', 'The Problem of Pain']
 puts(my_books.my_map { |item| item.gsub('The', 'A') })
 puts((0..5).my_map { |i| i * i })
-puts 'my_map_proc'
-my_proc = proc { |i| i * i }
-puts(1..5).my_map(my_proc) { |i| i + i }
+my_proc = proc { |num| num > 10 }
+p [18, 22, 5, 6].my_map(my_proc) { |num| num < 10 } # => true true false false
+
+# puts 'my_map_proc'
+# my_proc = proc { |i| i * i }
+# puts (1..5).my_map(my_proc) { |i| i + i }
+
 puts ''
+
+puts '9.--------my_inject--------'
+puts ((1..5).my_inject { |sum, n| sum + n }) #=> 15
+puts (1..5).my_inject(1) { |product, n| product * n } #=> 120
+puts (1..5).my_inject(1, :+) #=> 16
+longest =
+  %w[cardiology anatomy neurology].my_inject do |memo, word|
+    memo.length > word.length ? memo : word
+  end
+puts longest #=> "bear"
+
+puts multiply_els([2, 4, 5]) #=> 40
