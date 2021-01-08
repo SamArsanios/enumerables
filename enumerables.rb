@@ -89,7 +89,20 @@ module Enumerable
     counter
   end
 
+  # my_count map method
+  def my_map(proc = nil)
+    return enum_for unless block_given?
   
+    array = []
+  
+    if proc
+      my_each { |element| array << proc.call(element) }
+    else
+      my_each { |element| array << yield(element) }
+    end
+  
+    array
+  end
 end
 
 # ...1...
@@ -136,8 +149,20 @@ p [].my_none? #=> true
 p [nil].my_none? #=> true
 p [nil, false].my_none? #=> true
 p [nil, false, true].my_none? #=> false
+puts ''
 
 # ..7...
 puts [1, 2, 4, 2].my_count #=> 4
 puts [1, 2, 4, 2].my_count(2) #=> 2
 puts([0, 1, 2, 3].count { |element| element > 1 }) # => 2
+puts ''
+
+# ..8...
+puts '8.--------my_maps--------'
+my_books = ['The Lord of the Rings', 'The Chronicles of Narnia', 'The Problem of Pain']
+puts (my_books.my_map { |item| item.gsub('The', 'A') })
+puts ((0..5).my_map { |i| i * i })
+puts 'my_map_proc'
+my_proc = proc { |i| i * i }
+puts (1..5).my_map(my_proc) { |i| i + i }
+puts ''
