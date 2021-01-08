@@ -25,11 +25,11 @@ This project is a clone to the Enumerable methods of the ruby programming langua
 
 To get a local copy up and running follow these simple example steps.
 
-- `git clone https://github.com/keneogu/bubble_sort.git`
-- `cd bubble_sort`
-- `git checkout -b copy-bubble-sort`
-- `git pull origin copy-bubble-sort`
-- Run `ruby bubble_sort.rb`
+- `git clone https://github.com/SamArsanios/enumerables.git
+- `cd enumerables`
+- `git checkout -b enumerable-features`
+- `git pull origin enumerable-features`
+- Run `ruby enumerable.rb`
 
 ## Authors
 
