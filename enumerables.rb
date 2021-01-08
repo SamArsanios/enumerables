@@ -36,18 +36,41 @@ module Enumerable
   end
 
   # my_all Enumberable method
+  def my_all?(argument = nil)
+    if argument
+      my_each { |element| return false unless argument === element } # rubocop:disable Style/CaseEquality
+    elsif block_given?
+      my_each { |element| return false unless yield(element) }
+    else
+      my_each { |element| return false unless element }
+    end
+
+    true
+  end
 end
 
 # ...1...
-puts "1.-------my_each-------"
+puts '1.-------my_each-------'
 p(1..5).my_each { |num| puts "the number is #{num}" }
 p(%w[Sharon Leo Leila Brian Arun].my_each { |friend| puts "Hello, #{friend}" })
+puts ''
 
 # ..2...
-puts "2.-------my_each_with_index-------"
+puts '2.-------my_each_with_index-------'
 p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts friend if index.even? })
 p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts "#{friend} is index #{index}" })
+puts ''
 
 # ..3...
-puts "1.-------my_select-------"
+puts '3.-------my_select-------'
 p(%w[Sharon Leo Leila Brian Arun].my_select { |friend| friend != 'Brian' })
+puts ''
+
+# ..4...
+puts '4.-------my_all-------'
+puts(%w[ant bear cat].my_all? { |word| word.length >= 3 }) #=> true
+puts(%w[ant bear cat].my_all? { |word| word.length >= 4 }) #=> false
+puts %w[ant bear cat].my_all?(/t/) #=> false
+puts [1, 2i, 3.14].my_all?(Numeric) #=> true
+puts [].my_all? #=> true
+puts ''
