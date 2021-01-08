@@ -82,8 +82,7 @@ module Enumerable
     counter = 0
     if block_given?
       my_each { |val| counter += 1 if yield(val) }
-    end
-    if para
+	elsif para
       my_each { |val| counter += 1 if para == val }
     else
       counter = length
