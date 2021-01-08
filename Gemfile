@@ -1,2 +1,2 @@
 source 'https://rubygems.org'
-gem 'rubocop'
+gem 'rubocop', require: false
