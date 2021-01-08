@@ -44,8 +44,20 @@ module Enumerable
     else
       my_each { |element| return false unless element }
     end
-
     true
+  end
+
+  def my_any?(argue = nil)
+    result = false
+    if block_given?
+      my_each { |val| return true if yield(val) }
+    end
+    if argue
+      my_each { |val| return true if argue === val } # rubocop:disable Style/CaseEquality
+    else
+      my_each { |val| return true unless val }
+    end
+    result
   end
 end
 
@@ -74,3 +86,14 @@ puts %w[ant bear cat].my_all?(/t/) #=> false
 puts [1, 2i, 3.14].my_all?(Numeric) #=> true
 puts [].my_all? #=> true
 puts ''
+
+# ..5...
+puts(%w[ant bear cat].my_any? { |word| word.length >= 3 }) #=> true
+puts(%w[ant bear cat].my_any? { |word| word.length >= 4 }) #=> true
+puts %w[ant bear cat].my_any?(/d/) #=> false
+puts [nil, true, 99].my_any?(Integer) #=> true
+puts [nil, true, 99].my_any? #=> true
+puts [].my_any? #=> false
+puts ''
+
+# ..6...
