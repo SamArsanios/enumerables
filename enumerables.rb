@@ -1,16 +1,33 @@
 # rubocop:disable
 module Enumerable
   def my_each
-	return to_enum unless block_given?
-	arr = to_a
-	i = 0
-     while i < arr.length
-	  yield(arr[i])
-	  i += 1
+    return to_enum unless block_given?
+
+    arr = to_a
+    i = 0
+    while i < arr.length
+      yield(arr[i])
+      i += 1
+    end
+    arr
+  end
+
+  def my_each_with_index
+    return to_enum unless block_given?
+
+    index = 0
+    my_each do |item|
+      yield(item, index)
+      index += 1
     end
   end
 end
 
 # ...1...
-p(1...5).my_each { |num| puts "the number is #{num}" }
-p %w[Sharon Leo Leila Brian Arun].my_each { |friend| puts "Hello, #{friend}" } # rubocop:disable
+p(1..5).my_each { |num| puts "the number is #{num}" }
+p(%w[Sharon Leo Leila Brian Arun].my_each { |friend| puts "Hello, #{friend}" })
+
+# ..2...
+p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts friend if index.even? })
+p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts "#{friend} is index #{index}" })
+
