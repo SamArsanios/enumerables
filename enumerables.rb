@@ -34,15 +34,20 @@ module Enumerable
 
     array
   end
+
+  # my_all Enumberable method
 end
 
 # ...1...
+puts "1.-------my_each-------"
 p(1..5).my_each { |num| puts "the number is #{num}" }
 p(%w[Sharon Leo Leila Brian Arun].my_each { |friend| puts "Hello, #{friend}" })
 
 # ..2...
+puts "2.-------my_each_with_index-------"
 p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts friend if index.even? })
 p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts "#{friend} is index #{index}" })
 
 # ..3...
+puts "1.-------my_select-------"
 p(%w[Sharon Leo Leila Brian Arun].my_select { |friend| friend != 'Brian' })
