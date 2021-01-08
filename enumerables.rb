@@ -61,6 +61,7 @@ module Enumerable
 
     false
   end
+
   # my_none Enumberable method
   def my_none?(argu = nil)
     result = true
