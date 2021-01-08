@@ -82,7 +82,7 @@ module Enumerable
     counter = 0
     if block_given?
       my_each { |val| counter += 1 if yield(val) }
-	elsif para
+    elsif para
       my_each { |val| counter += 1 if para == val }
     else
       counter = length
@@ -136,7 +136,7 @@ puts ''
 puts '2.-------my_each_with_index-------'
 p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts friend if index.even? })
 p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts "#{friend} is index #{index}" })
-p (1..5).my_each_with_index {|item,index| puts "#{item} is #{index}"}
+p((1..5).my_each_with_index { |item, index| puts "#{item} is #{index}" })
 puts ''
 
 # ..3...
