@@ -126,79 +126,79 @@ def multiply_els(arr)
   arr.inject(:*)
 end
 # ...1...
-puts '1.-------my_each-------'
-p(1..5).my_each { |num| puts "the number is #{num}" }
-p(%w[Sharon Leo Leila Brian Arun].my_each { |friend| puts "Hello, #{friend}" })
-puts ''
+# puts '1.-------my_each-------'
+# p(1..5).my_each { |num| puts "the number is #{num}" }
+# p(%w[Sharon Leo Leila Brian Arun].my_each { |friend| puts "Hello, #{friend}" })
+# puts ''
 
-# ..2...
-puts '2.-------my_each_with_index-------'
-p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts friend if index.even? })
-p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts "#{friend} is index #{index}" })
-p((1..5).my_each_with_index { |item, index| puts "#{item} is #{index}" })
-puts ''
+# # ..2...
+# puts '2.-------my_each_with_index-------'
+# p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts friend if index.even? })
+# p(%w[Sharon Leo Leila Brian Arun].my_each_with_index { |friend, index| puts "#{friend} is index #{index}" })
+# p((1..5).my_each_with_index { |item, index| puts "#{item} is #{index}" })
+# puts ''
 
-# ..3...
-puts '3.-------my_select-------'
-p(%w[Sharon Leo Leila Brian Arun].my_select { |friend| friend != 'Brian' })
-puts ''
+# # ..3...
+# puts '3.-------my_select-------'
+# p(%w[Sharon Leo Leila Brian Arun].my_select { |friend| friend != 'Brian' })
+# puts ''
 
-# ..4...
-puts '4.-------my_all-------'
-puts(%w[ant bear cat].my_all? { |word| word.length >= 3 }) #=> true
-puts(%w[ant bear cat].my_all? { |word| word.length >= 4 }) #=> false
-puts %w[ant bear cat].my_all?(/t/) #=> false
-puts [1, 2i, 3.14].my_all?(Numeric) #=> true
-puts [].my_all? #=> true
-puts ''
+# # ..4...
+# puts '4.-------my_all-------'
+# puts(%w[ant bear cat].my_all? { |word| word.length >= 3 }) #=> true
+# puts(%w[ant bear cat].my_all? { |word| word.length >= 4 }) #=> false
+# puts %w[ant bear cat].my_all?(/t/) #=> false
+# puts [1, 2i, 3.14].my_all?(Numeric) #=> true
+# puts [].my_all? #=> true
+# puts ''
 
-# ..5...
-puts '5.-------my_any-------'
-puts(%w[ant bear cat].my_any? { |word| word.length >= 3 }) #=> true
-puts(%w[ant bear cat].my_any? { |word| word.length >= 4 }) #=> true
-puts %w[ant bear cat].my_any?(/d/) #=> false
-puts [nil, true, 99].my_any?(Integer) #=> true
-puts [nil, true, 99].my_any? #=> true
-puts [].my_any? #=> false
-puts ''
+# # ..5...
+# puts '5.-------my_any-------'
+# puts(%w[ant bear cat].my_any? { |word| word.length >= 3 }) #=> true
+# puts(%w[ant bear cat].my_any? { |word| word.length >= 4 }) #=> true
+# puts %w[ant bear cat].my_any?(/d/) #=> false
+# puts [nil, true, 99].my_any?(Integer) #=> true
+# puts [nil, true, 99].my_any? #=> true
+# puts [].my_any? #=> false
+# puts ''
 
-# ..6...
-puts '6.-------my_none-------'
-p(%w[ant bear cat].my_none? { |word| word.length == 5 }) #=> true
-p(%w[ant bear cat].my_none? { |word| word.length >= 4 }) #=> false
-p %w[ant bear cat].my_none?(/d/) #=> true
-p [1, 3.14, 42].my_none?(Float) #=> false
-p [].my_none? #=> true
-p [nil].my_none? #=> true
-p [nil, false].my_none? #=> true
-p [nil, false, true].my_none? #=> false
-puts ''
+# # ..6...
+# puts '6.-------my_none-------'
+# p(%w[ant bear cat].my_none? { |word| word.length == 5 }) #=> true
+# p(%w[ant bear cat].my_none? { |word| word.length >= 4 }) #=> false
+# p %w[ant bear cat].my_none?(/d/) #=> true
+# p [1, 3.14, 42].my_none?(Float) #=> false
+# p [].my_none? #=> true
+# p [nil].my_none? #=> true
+# p [nil, false].my_none? #=> true
+# p [nil, false, true].my_none? #=> false
+# puts ''
 
-# ..7...
-puts '7.-------my_count-------'
-puts [1, 2, 4, 2].my_count #=> 4
-puts [1, 2, 4, 2].my_count(2) #=> 2
-puts([0, 1, 2, 3].count { |element| element > 1 }) # => 2
-p((1..3).my_count) #=> 3
-puts ''
+# # ..7...
+# puts '7.-------my_count-------'
+# puts [1, 2, 4, 2].my_count #=> 4
+# puts [1, 2, 4, 2].my_count(2) #=> 2
+# puts([0, 1, 2, 3].count { |element| element > 1 }) # => 2
+# p((1..3).my_count) #=> 3
+# puts ''
 
-# ..8...
-puts '8.--------my_maps--------'
-my_books = ['The Lord of the Rings', 'The Chronicles of Narnia', 'The Problem of Pain']
-puts(my_books.my_map { |item| item.gsub('The', 'A') })
-puts((0..5).my_map { |i| i * i })
-my_proc = proc { |num| num < 10 }
-p [18, 22, 5, 6].my_map(my_proc) { |num| num > 20 } # => true true false false
-puts ''
+# # ..8...
+# puts '8.--------my_maps--------'
+# my_books = ['The Lord of the Rings', 'The Chronicles of Narnia', 'The Problem of Pain']
+# puts(my_books.my_map { |item| item.gsub('The', 'A') })
+# puts((0..5).my_map { |i| i * i })
+# my_proc = proc { |num| num < 10 }
+# p [18, 22, 5, 6].my_map(my_proc) { |num| num > 20 } # => true true false false
+# puts ''
 
-puts '9.--------my_inject--------'
-puts((1..5).my_inject { |sum, n| sum + n }) #=> 15
-puts((1..5).my_inject(1) { |product, n| product * n }) #=> 120
-puts((1..5).my_inject(1, :+)) #=> 16
-longest =
-  %w[cardiology anatomy neurology].my_inject do |memo, word|
-    memo.length > word.length ? memo : word
-  end
-puts longest #=> "cardiology"
+# puts '9.--------my_inject--------'
+# puts((1..5).my_inject { |sum, n| sum + n }) #=> 15
+# puts((1..5).my_inject(1) { |product, n| product * n }) #=> 120
+# puts((1..5).my_inject(1, :+)) #=> 16
+# longest =
+#   %w[cardiology anatomy neurology].my_inject do |memo, word|
+#     memo.length > word.length ? memo : word
+#   end
+# puts longest #=> "cardiology"
 
-puts multiply_els([2, 4, 5]) #=> 40
+# puts multiply_els([2, 4, 5]) #=> 40
