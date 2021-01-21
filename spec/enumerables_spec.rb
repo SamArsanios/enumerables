@@ -71,6 +71,23 @@ describe Enumerable do
         it 'returns true if elements contain the given regular expression' do
             expect(%w[ant bat cat].my_all?(/t/)).to be_truthy
         end
+    end
 
+    describe '#my_any?' do
+        it 'returns if any value is true' do
+            expect(%w[ant bear cat].my_any? { |word| word.length >= 4 }).to be_truthy
+        end
+
+        it 'returns if any value is false' do
+            expect(%w[ant bear cat].my_any?(/d/)).to be_falsy
+        end
+
+        it 'returns true if any value is integer' do
+            expect([nil, true, 99].my_any?(Integer)).to be_truthy
+        end
+
+        it 'returns true if any value is integer' do
+            expect([nil, true, 99].my_any?).to be_truthy
+        end
 end
 end
