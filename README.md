@@ -1,11 +1,11 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Enumerables
+## Enumerables
 
 This project is a clone to the Enumerable methods of the ruby programming language
 
 ```ruby
-# The Enumerable methods
+ The Enumerable methods
 #my_each
 #my_each_with_index
 #my_select 
