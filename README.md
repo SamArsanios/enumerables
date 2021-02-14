@@ -43,6 +43,7 @@ To get a local copy up and running follow these simple example steps.
 
 - GitHub: [@SamArsanios](https://github.com/SamArsanios)
 - Twitter: [@SamArsanios](https://twitter.com/SamArsanios)
+- LinkedIn: [Samson](https://www.linkedin.com/in/samson-kibrom/)
 
 ## 🤝 Contributing
 
